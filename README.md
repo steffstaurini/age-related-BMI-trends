@@ -3,15 +3,55 @@ Examining if BMI indicates health decline in low-income groups. Analyzing BMI tr
 
 
 ## Introduction
-Obesity is recognized as a global epidemic of the 21st century, becoming a significant burden on health systems due to its high association with disease and mortality rates. The Body Mass Index (BMI) is a widely validated tool used to assess the nutritional status of individuals and to project public health policies. Recently, high BMI levels have been on the rise in Argentina, particularly among groups with less economic resources. This study explores the interrelatedness among BMI, socioeconomic status, and health across various age groups. The significance of comprehending these correlations in the context of Argentina's ongoing economic difficulties is emphasized. The investigation is established on an extensive sample that spans from 2005 to the current day, analyzing the province of Córdoba's adult population. The purpose is to examine trends in BMI and their correlation with age and socioeconomic status, while contrasting them with the general Argentine population during diverse time periods.
+This study focuses on the growing global epidemic of obesity, particularly its impact in Argentina. Body Mass Index (BMI) is used as a tool to measure obesity and assess its link to socio-economic status (SES). Higher BMI is associated with poorer health outcomes and increased healthcare costs. Argentina has seen a rise in BMI, especially among lower SES individuals. Understanding this relationship is crucial for public health strategies.  BMI differences can widen the socio-economic gap and hinder economic development. By analyzing BMI trends by age, sex, and SES, researchers can gain a comprehensive picture of the overweight and obesity epidemic in Argentina. This is especially important considering the country's ongoing economic crisis. The study utilizes data from multiple population-based studies conducted between 2005 and 2022. Researchers hypothesize that BMI trends can reflect not only nutritional status but also health status linked to economic conditions, acting as a proxy for overall well-being. This research aims to estimate how age, sex, and SES affect BMI trends in Córdoba, Argentina (2009-2022) compared to the national population (2005-2018).
+
 
 ## Methods
 
-**Data source** The study utilized data from two sources: the Córdoba Obesity and Diet Study (CODIES) and National Risk Factors Surveys (NRFS). CODIES I and II, conducted in Córdoba in 2006 and 2022, respectively, employed a cross-sectional design with random sampling. CODIES II enrolled 1327 subjects, and both studies covered individuals aged 18-85. NRFS, a government tool for data collection, evaluated risk factors in the Argentine population in 2005, 2009, 2013, and 2018 (n=16,577 for anthropometrics). Trained nutritionists gathered information on demographics, economic status, health, and dietary habits, while utilizing the International Physical Activity Questionnaire to gather data on physical activity. Ethical approval was obtained from the appropriate committees.
+**Study Design**
 
-**Descriptive statistics** analyzed continuous data and BMI trends based on time, gender, age, and SES using Python and Stata. Median moving averages (MMA) were calculated with a lag of age ±1. The first derivative of the quadratic function of age determined the age at which maximum BMI occurred. Statistical analyses were performed with Python v3.11.4, and graphics were created using Stata v17. The analysis involved generating scatterplots of BMI by age and calculating simple moving averages with a three-year width. Median BMI values were used to fit a second-degree polynomial curve, and measures of kurtosis, standard deviation, and skewness were examined. The analyses were carried out on the overall population and then separated by gender and SES (low, medium, high).
+This research combines data from two sources:
+Córdoba Obesity and Diet Study (CODIES): Cross-sectional surveys conducted in Córdoba, Argentina (CODIES I: 2006, CODIES II: 2022). Both enrolled subjects aged 18-85 years using random samples from the general population.
+National Risk Factors Surveys (NRFS): A national survey conducted by the Argentinian government across multiple years (2005, 2009, 2013, 2018). It employed a stratified, multistage approach to collect data from the general population aged 18 or older.
 
-## 3 Code
+**Data Collection**
+
+CODIES: Data collection involved face-to-face interviews (CODIES I) and phone interviews during the pandemic (CODIES II) with measurements taken post-lockdown.
+NRFS: Trained interviewers conducted face-to-face surveys gathering data on household and individual characteristics.
+
+**Measurements**
+    
+CODIES: Anthropometric measurements (weight and height) were taken following WHO guidelines to calculate BMI.
+NRFS: BMI was calculated based on self-reported weight and height, with height and weight being measured in a subsample of the 2018 survey for validation purposes.
+
+**Other Variables**
+
+Age, sex, and socioeconomic status (SES) were included in the analysis.
+CODIES: SES used a composite indicator by the National Institute of Statistics and Census (INDEC) considering income, education, and occupation.
+NRFS: SES used a composite indicator based on income quintiles and occupation. Both indicators were categorized as low, medium, and high and showed high correlation.
+
+**Statistical Analyses**
+
+This study focused on specific data points: age (continuous and categorical), sex, educational level, and SES.
+Descriptive statistics were used to summarize the population characteristics (means, standard deviations for continuous data, frequencies for categorical data).
+Age, educational level, SES, and nutritional status were categorized for analysis.
+Scatterplots were created to visualize BMI trends across age groups.
+BMI trends were calculated using three-year median values. Quadratic polynomial curves were then used to estimate the age at which BMI reaches its maximum value (maxBMI) for the general population and stratified by sex and SES.
+
+**Software**
+
+Data analysis was performed using Python version 3.11.4 and Stata version 17.
+
+
+**Data source** 
+
+The study utilized data from two sources: the Córdoba Obesity and Diet Study (CODIES) and National Risk Factors Surveys (NRFS). CODIES I and II, conducted in Córdoba in 2006 and 2022, respectively, employed a cross-sectional design with random sampling. CODIES II enrolled 1327 subjects, and both studies covered individuals aged 18-85. NRFS, a government tool for data collection, evaluated risk factors in the Argentine population in 2005, 2009, 2013, and 2018 (n=16,577 for anthropometrics). Trained nutritionists gathered information on demographics, economic status, health, and dietary habits, while utilizing the International Physical Activity Questionnaire to gather data on physical activity. Ethical approval was obtained from the appropriate committees.
+
+**Descriptive statistics** 
+
+analyzed continuous data and BMI trends based on time, gender, age, and SES using Python and Stata. Median moving averages (MMA) were calculated with a lag of age ±1. The first derivative of the quadratic function of age determined the age at which maximum BMI occurred. Statistical analyses were performed with Python v3.11.4, and graphics were created using Stata v17. The analysis involved generating scatterplots of BMI by age and calculating simple moving averages with a three-year width. Median BMI values were used to fit a second-degree polynomial curve, and measures of kurtosis, standard deviation, and skewness were examined. The analyses were carried out on the overall population and then separated by gender and SES (low, medium, high).
+
+## Code
 
 ### **BMI Trajectories**
 
@@ -103,7 +143,7 @@ This function, bmi_trajectories, analyzes BMI trajectories utilizing quadratic c
       plt.title('Entropy')
       plt.show()
 
-We utilized the BMI trajectories function to create plots and gather statistics for each population sample without distinguishing by any other variables.  The trajectories were determined for the entire population in every dataset and are defined as follows:
+We utilized the BMI trajectories function to create plots and gather statistics for each population sample without distinguishing by any other variables. The trajectories were determined for the entire population in every dataset and are defined as follows:
       
     # Base1
     bmi_trajectories(df, 'age', 'bmi',"BMI-age distribution - base1")
@@ -135,17 +175,36 @@ Finally, the analysis was expanded to include graphing the BMI curves for each s
 
 ## Results
 
-In CODIES, about 42.5% of participants were women, and in NRFS, the proportion ranged around 45%, except for 2009 when it hit a high of 65.9% for women. The majority of participants in both studies were between the ages of 30 and 60. Education levels experienced a decrease in the lowest category by nearly 8% from 2005 to 2018 nationwide, with comparable trends in CODIES I and II. Socioeconomic status remained constant, with 80% consistently in the middle and low brackets throughout all studied years. The average BMI among populations surpassed 25 kg/m2, with a slight upward trend observed in both NRFS and CODIES versions, reaching 27.5 kg/m2 in 2018. The prevalence of obesity in NRFS increased from 16% in 2005 to nearly 29% in 2018, implying a doubled trend. A similar pattern occurred in CODIES I and II. 
+**Descriptive results**
+The analysis included over 134,000 participants from 2005 to 2022. While there was a slight difference in gender balance between the studies (NRFS with more women), both showed a concentration of adults (30-60 years old) and a similar trend towards intermediate educational levels. Overall average BMI was 26.5, with a slight increase observed over time in both studies. This trend mirrored the rise in obesity prevalence, which jumped from around 16% to nearly 29% in the national survey (NRFS) and from 17% to 26% in the Córdoba-based study (CODIES) during the analyzed period.
 
 ### **Main bio-socio characteristics of studied populations: NRFS (2005, 2009, 2013, 2018); CODIES (I and II)**
 
-![image](https://github.com/steffstaurini/age-related-BMI-trends/assets/99434841/b4e07d46-6976-4363-bcb7-bbc343a0a061)
+![image](https://github.com/steffstaurini/age-related-BMI-trends/assets/99434841/e395a47e-9753-4af8-9e26-79d95b4a3927)
 
-// los resultados gruesos de las curvas todavia no los pongo por las dudas
-// conclusiones lo mismo
+**BMI trends across age**
+![juntos](https://github.com/steffstaurini/age-related-BMI-trends/assets/99434841/4fbc53d0-1741-4d7b-8ddc-c6a8d0a70b9f)
+
+*Age and BMI Trends*
+Figure 2 shows that both national and local BMI trends peak (maxBMI) around 58-59 years old, except for initial data collections (NRFS 2009 and CODIES I) where the peak was slightly later (60-62 years). Notably, the peak BMI itself has also increased slightly across all studies over time.
+
+*Sex and BMI Trends*
+Figure 3 explores maxBMI by sex. Women reach their peak BMI (25.9-28.1 kg/m²) between 59 and 70 years old, while men reach theirs (26.4-28.8 kg/m²) between 55 and 60 years old.
+
+*Socioeconomic Status (SES) and BMI Trends*
+Figure 4 investigates maxBMI by SES. Lower SES groups tend to have a higher maxBMI (26.4-28.9 kg/m²) reached at younger ages (56-61 years old) compared to higher SES groups. This pattern holds true for both the national survey (NRFS) and the Córdoba study (CODIES).
+The middle SES category showed no significant differences between NRFS and CODIES studies. NRFS maxBMI in this group increased steadily over time (26.0 in 2005 to 28.55 in 2018), while the peak age remained constant (58 years old). CODIES data also showed an increase in maxBMI (26.85 to 28.1) but with a significant decrease in the age at which it's reached (from 63 to 53 years old) between CODIES I and CODIES II.
+High SES individuals tend to reach their maxBMI later in life and at lower BMI levels compared to lower SES groups. In the NRFS, the maxBMI (24.9 kg/m²) is reached around 60 years old, with a slight increase in peak age and BMI observed in later editions (27.7 kg/m² at 63 years old). CODIES data shows a similar trend, with maxBMI increasing from 25.6 kg/m² at 53 years old in the first edition to 26.8 kg/m² at 57 years old in the second edition.
+Overall, this section highlights the interaction between age, sex, SES, and BMI. It reveals that people from lower socioeconomic backgrounds tend to reach a higher peak BMI at younger ages compared to those with higher SES.
+
 
 ## conclusion
-// principales conclusiones
 
-## consideraciones finales
-// autores, link a full text, etc
+The study confirms the intricate link between age, socioeconomic status (SES), and BMI in Argentina, particularly Córdoba.
+It identifies clear differences in BMI patterns across SES groups and genders. People with lower SES tend to have higher peak BMIs, highlighting the impact of economic factors on health.
+Women reach their peak BMI later than men, indicating gender-specific variations in BMI trajectory.
+The study acknowledges the multifaceted nature of poverty as a relevant context for these findings, emphasizing the need for a comprehensive approach to understanding the complex relationship between SES and health.
+This research not only supports existing evidence of rising obesity among low-income populations globally, but also emphasizes BMI's potential as a proxy indicator for SES.
+These insights are crucial for developing effective public health policies aimed at improving overall health, reducing the burden of non-communicable diseases (NCDs), especially among disadvantaged socioeconomic groups.
+Finally, the study underscores the significance of BMI as a valuable tool. Beyond its established role in assessing nutritional status, BMI's potential as a proxy indicator for SES offers a more comprehensive approach to health analysis and informs evidence-based decision-making.
+
